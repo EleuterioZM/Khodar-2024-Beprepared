@@ -1,0 +1,32 @@
+REST - Representation Transfer State
+Exeutar o serv
+=> npx tsx watch src/server.ts
+
+Metodos HTTP
+.GET - buscar
+.POST - Guardar um recurso
+.PUT - Actualizar
+.DELETE - Excluir 
+.GET - Buscar um recurso
+.Patch - Alterar
+
+Staus code - codigos que padronizam ou seja retornam um erro ex 404
+2xx sucesso
+2xx Erro processamento
+4xx Erro do lado do cliente
+5xx Server error  https://http.cat/
+
+
+Containers - Ambientes insolados para aplcacoes
+
+baixar o postgress na maquina   - docker pull postgres
+
+Diagramas
+https://dbdiagram.io/d
+
+
+Run
+npm run dev
+
+
+https://www.beekeeperstudio.io/download/?ext=exe&arch=&type=installer&edition=ultimate

@@ -1,0 +1,38 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "npx tsx watch src/server.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "@types/jsonwebtoken": "^9.0.6",
+    "@types/node": "^20.14.10",
+    "prisma": "^5.17.0",
+    "typescript": "^5.5.3"
+  },
+  "dependencies": {
+    "@fastify/cors": "^9.0.1",
+    "@prisma/client": "^5.16.2",
+    "bcrypt": "^5.1.1",
+    "dayjs": "^1.11.12",
+    "dotenv": "^16.4.5",
+    "fastify": "^4.28.1",
+    "firebase": "^10.12.4",
+    "firebase-admin": "^12.2.0",
+    "jsonwebtoken": "^9.0.2",
+    "redis": "^4.6.15",
+    "tsx": "^4.16.2",
+    "twilio": "^5.2.2",
+    "zod": "^3.23.8"
+  }
+}

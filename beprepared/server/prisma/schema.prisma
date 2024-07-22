@@ -1,0 +1,90 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Province {
+  id String @id @default(uuid())
+  designation String @unique
+  createdAt DateTime @default(now()) @map("created_at")
+  UpdatedAt DateTime @updatedAt @map("updated_at")
+
+  districts District[]
+  subscribers Subscriber[]  
+  alerts Alert[]
+
+  @@map("provinces")
+}
+
+model District {
+  id String @id @default(uuid())
+  designation String
+  provinceId String @map("province_id")
+  createdAt DateTime @default(now()) @map("created_at")
+  UpdatedAt DateTime @updatedAt @map("updated_at")
+
+  province Province @relation(fields: [provinceId], references: [id])
+  subscribers Subscriber[]
+  alerts Alert[]
+
+  @@map("districts")
+}
+
+model Subscriber {
+  id String @id @default(uuid())
+  phone String @unique @db.VarChar(9)
+  deviceId String? @unique @map("device_id")
+  verified Boolean @default(false)
+  districtId String @map("district_id")
+  provinceId String @map("province_id")
+  createdAt DateTime @default(now()) @map("created_at")
+  UpdatedAt DateTime @updatedAt @map("updated_at")
+
+  district District @relation(fields: [districtId], references: [id])
+  province Province @relation(fields: [provinceId], references: [id])
+  Notification Notification[]
+
+  @@map("subscribers")
+}
+
+model Notification {
+  id String @id @default(uuid())
+  subscriberId String @map("subscriber_id")
+  message String
+  createdAt DateTime @default(now()) @map("created_at")
+  UpdatedAt DateTime @updatedAt @map("updated_at")
+
+  subscriber Subscriber @relation(fields: [subscriberId], references: [id])
+
+  @@map("notifications")
+}
+
+model admin {
+  id String @id @default(uuid())
+  name String
+  email String @unique
+  password String
+  createdAt DateTime @default(now()) @map("created_at")
+  UpdatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("admins")
+}
+
+model Alert {
+  id String @id @default(uuid())
+  title String
+  message String
+  createdAt DateTime @default(now()) @map("created_at")
+  UpdatedAt DateTime @updatedAt @map("updated_at")
+  districtId String @map("district_id")
+  provinceId String @map("province_id")
+
+  district District @relation(fields: [districtId], references: [id])
+  province Province @relation(fields: [provinceId], references: [id])
+
+  @@map("alerts")
+}
